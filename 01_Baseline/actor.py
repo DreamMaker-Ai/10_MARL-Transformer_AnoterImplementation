@@ -138,7 +138,7 @@ class Actor:
             actions = {}  # For alive agents
 
             acts = np.argmax(q_logits[0, :, :], axis=-1)  # (n,)
-            padded_actions = np.expand_dims(acts, axis=0)  # add batch dim; (1,n)
+            padded_actions = np.zeros((1,self.env.config.max_num_red_agents))  #(1,n)
 
             for idx in self.alive_agents_ids:
                 agent_id = 'red_' + str(idx)
