@@ -149,7 +149,7 @@ class Actor:
                     actions[agent_id] = np.random.randint(low=0,
                                                           high=self.action_space_dim)
 
-                padded_actions[0, i] = actions[agent_id]
+                padded_actions[0, idx] = actions[agent_id]
 
             # One step of Lanchester simulation, for alive agents in env
             next_obserations, rewards, dones, infos = self.env.step(actions)
