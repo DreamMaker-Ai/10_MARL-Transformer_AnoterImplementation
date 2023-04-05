@@ -140,11 +140,11 @@ class Actor:
             acts = np.argmax(q_logits[0, :, :], axis=-1)  # (n,)
             padded_actions = np.expand_dims(acts, axis=0)  # add batch dim; (1,n)
 
-            for i, a in enumerate(self.alive_agents_ids):
-                agent_id = 'red_' + str(a)
+            for idx in self.alive_agents_ids:
+                agent_id = 'red_' + str(idx)
 
                 if np.random.rand() >= self.epsilon:  # epsilon-greedy
-                    actions[agent_id] = acts[i]
+                    actions[agent_id] = acts[idx]
                 else:
                     actions[agent_id] = np.random.randint(low=0,
                                                           high=self.action_space_dim)
