@@ -200,14 +200,14 @@ class Actor:
             agents_rewards = []
             agents_dones = []
 
-            for a in self.alive_agents_ids:
-                agent_id = 'red_' + str(a)
-                agents_rewards.append(float(rewards[agent_id]))
-                agents_dones.append(dones[agent_id])
-
-            while len(agents_rewards) < self.env.config.max_num_red_agents:
-                agents_rewards.append(0.0)
-                agents_dones.append(True)
+            for idx in range(self.env.config.max_num_red_agents):
+                if idx in self.alive_agents_ids:
+                    agent_id = 'red_' + str(idx)
+                    agents_rewards.append(float(rewards[agent_id]))
+                    agents_dones.append(dones[agent_id])
+                else:
+                    agents_rewards.append(0.0)
+                    agents_dones.append(True)
 
             if len(agents_rewards) != self.env.config.max_num_red_agents:
                 raise ValueError()
